@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Remote-Quansheng UV-K5</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div id="radio-device">
+
+  <!-- ====== 天线条 ====== -->
+  <div class="antenna">
+    <div class="antenna-mast"></div>
+    <div class="antenna-tip"></div>
+  </div>
+
+  <!-- ====== 顶部状态栏 ====== -->
+  <div class="top-bar">
+    <div class="knob-area">
+      <div class="knob-ring" id="knob-vol">
+        <div class="knob-dot"></div>
+      </div>
+      <span class="knob-label">VOL</span>
+      <div class="knob-ring" id="knob-ch">
+        <div class="knob-dot"></div>
+      </div>
+      <span class="knob-label">CH</span>
+    </div>
+    <div class="led-indicator" id="led-tx">TX</div>
+    <div class="battery-indicator">
+      <div class="battery-icon">
+        <div class="battery-level" id="battery-level" style="width:75%"></div>
+      </div>
+      <span id="battery-text">8.0V</span>
+    </div>
+    <div class="connection-dot" id="conn-dot" title="连接状态"></div>
+  </div>
+
+  <!-- ====== LCD 屏幕 ====== -->
+  <div class="lcd-bezel">
+    <canvas id="lcd-canvas" width="800" height="400"></canvas>
+    <div class="lcd-glass"></div>
+  </div>
+
+  <!-- ====== 信号表 ====== -->
+  <div class="s-meter-row">
+    <div class="s-meter-bar" id="s-meter-fill" style="width:0%"></div>
+  </div>
+
+  <!-- ====== 键盘 ====== -->
+  <div class="keypad" id="keypad"></div>
+
+  <!-- ====== 底部快捷栏 ====== -->
+  <div class="quick-bar">
+    <div class="quick-row">
+      <button class="quick-btn audio-btn" id="btn-audio">🎤 启动音频</button>
+      <button class="quick-btn" id="btn-reconnect-audio" style="display:none">🔄 重连音频</button>
+      <button class="quick-btn" id="btn-settings">⚙ 设置</button>
+      <span class="quick-info" id="quick-info">未连接</span>
+    </div>
+    <div id="audio-warning" class="audio-warning" style="display:none">
+      ⚠ 音频无数据: QDNH 后端音频捕获未启动。请检查 QDNH 窗口中的音频设备配置。
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== 设置弹窗 ====== -->
+<div id="settings-modal" class="modal hidden">
+  <div class="modal-content">
+    <h3>连接设置</h3>
+    <div class="form-row">
+      <label>QDNH 地址</label>
+      <input type="text" id="cfg-host" value="127.0.0.1">
+    </div>
+    <div class="form-row">
+      <label>QDNH 端口</label>
+      <input type="number" id="cfg-port" value="18822">
+    </div>
+    <div class="form-row">
+      <label>密码 (无密码留空)</label>
+      <input type="password" id="cfg-password" value="">
+    </div>
+    <div class="form-row">
+      <label>呼号</label>
+      <input type="text" id="cfg-callsign" value="" maxlength="10">
+    </div>
+    <div class="form-row">
+      <label>LCD背景色</label>
+      <input type="color" id="cfg-lcd-bg" value="#0a1a0a">
+    </div>
+    <div class="form-row">
+      <label>LCD前景色</label>
+      <input type="color" id="cfg-lcd-fg" value="#00ff66">
+    </div>
+    <div class="form-actions">
+      <button class="quick-btn" id="btn-connect">连接 QDNH</button>
+      <button class="quick-btn" id="btn-disconnect">断开</button>
+      <button class="quick-btn" id="btn-save-cfg">保存</button>
+      <button class="quick-btn" id="btn-close-modal">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/app.js"></script>
+<script src="/static/js/lcd.js"></script>
+<script src="/static/js/keypad.js"></script>
+<script src="/static/js/audio.js"></script>
+</body>
+</html>
